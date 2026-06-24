@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- ============ Fragmento: HEAD ============ -->
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 01 - Catalogo de Suculentas</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+<!-- ============ Fragmento: MENU ============ -->
+<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">&#127807; Suculentas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal" aria-controls="menuPrincipal"
+                aria-expanded="false" aria-label="Mostrar menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/suculenta/listado}">Administrar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/suculenta/nueva}">Nueva suculenta</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============ Fragmento: PIE DE PAGINA ============ -->
+<footer th:fragment="footer" class="bg-success text-white text-center py-3 mt-5">
+    <div class="container">
+        <small>Practica Individual #1 &mdash; Catalogo de Suculentas &mdash; SC-403</small>
+    </div>
+</footer>
+
+<!-- ============ Fragmento: SCRIPTS ============ -->
+<div th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</div>
+
+</body>
+</html>
