@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Credenciales / Secretos (NO subir a Git) ###
+# Clave de servicio de Firebase (cuenta de administrador)
+src/main/resources/firebase/*.json
+# Si prefieres separar las credenciales de la BD en un archivo aparte:
+application-local.properties
+*.env
