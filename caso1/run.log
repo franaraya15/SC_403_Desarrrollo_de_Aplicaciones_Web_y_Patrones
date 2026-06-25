@@ -1,0 +1,102 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Program%20Files/Apache%20NetBeans/java/maven/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------------< com.caso1:caso01 >--------------------------
+[INFO] Building caso01 1
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.6:run (default-cli) > test-compile @ caso01 >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ caso01 ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 8 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ caso01 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ caso01 ---
+[INFO] skip non existing resourceDirectory C:\dev\Personal\SC_403_Desarrrollo_de_Aplicaciones_Web_y_Patrones\caso1\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ caso01 ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.6:run (default-cli) < test-compile @ caso01 <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.6:run (default-cli) @ caso01 ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.6)
+
+2026-06-24T19:30:55.799-06:00  INFO 34204 --- [caso01] [  restartedMain] com.caso1.Caso01Application              : Starting Caso01Application using Java 25.0.1 with PID 34204 (C:\dev\Personal\SC_403_Desarrrollo_de_Aplicaciones_Web_y_Patrones\caso1\target\classes started by administrador in C:\dev\Personal\SC_403_Desarrrollo_de_Aplicaciones_Web_y_Patrones\caso1)
+2026-06-24T19:30:55.801-06:00  INFO 34204 --- [caso01] [  restartedMain] com.caso1.Caso01Application              : No active profile set, falling back to 1 default profile: "default"
+2026-06-24T19:30:55.844-06:00  INFO 34204 --- [caso01] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-24T19:30:55.844-06:00  INFO 34204 --- [caso01] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-24T19:30:56.415-06:00  INFO 34204 --- [caso01] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-24T19:30:56.464-06:00  INFO 34204 --- [caso01] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interface.
+2026-06-24T19:30:57.008-06:00  INFO 34204 --- [caso01] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 80 (http)
+2026-06-24T19:30:57.020-06:00  INFO 34204 --- [caso01] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-24T19:30:57.020-06:00  INFO 34204 --- [caso01] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-24T19:30:57.096-06:00  INFO 34204 --- [caso01] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1251 ms
+2026-06-24T19:30:57.234-06:00  INFO 34204 --- [caso01] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-24T19:30:57.595-06:00  INFO 34204 --- [caso01] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60cf2565
+2026-06-24T19:30:57.597-06:00  INFO 34204 --- [caso01] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-24T19:30:57.627-06:00  INFO 34204 --- [caso01] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-24T19:30:57.683-06:00  INFO 34204 --- [caso01] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-24T19:30:58.193-06:00  INFO 34204 --- [caso01] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-24T19:30:58.269-06:00  WARN 34204 --- [caso01] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-24T19:30:58.284-06:00  INFO 34204 --- [caso01] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/baseDatos]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.43
+	Default catalog/schema: baseDatos/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-24T19:30:59.058-06:00  INFO 34204 --- [caso01] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-24T19:30:59.066-06:00  INFO 34204 --- [caso01] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-24T19:30:59.150-06:00  INFO 34204 --- [caso01] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-24T19:30:59.435-06:00  WARN 34204 --- [caso01] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-24T19:30:59.453-06:00  INFO 34204 --- [caso01] [  restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-06-24T19:30:59.736-06:00  WARN 34204 --- [caso01] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-06-24T19:30:59.737-06:00  INFO 34204 --- [caso01] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-24T19:30:59.740-06:00  INFO 34204 --- [caso01] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-24T19:30:59.746-06:00  INFO 34204 --- [caso01] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-24T19:30:59.753-06:00  INFO 34204 --- [caso01] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-24T19:30:59.767-06:00 ERROR 34204 --- [caso01] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 80 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 80 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.090 s
+[INFO] Finished at: 2026-06-24T19:30:59-06:00
+[INFO] ------------------------------------------------------------------------

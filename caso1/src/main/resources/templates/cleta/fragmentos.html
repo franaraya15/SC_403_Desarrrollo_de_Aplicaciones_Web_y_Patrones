@@ -1,0 +1,99 @@
+<!-- Fragmento 1: listado de las cletas en una tabla -->
+<section th:fragment="listado" class="p-3">
+    <div class="row p-3">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <div class="card-header"><h4>[[#{cleta.listado}]]</h4></div>
+                <div class="card-body">
+                    <div th:if="${cletas != null and !cletas.empty}">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>[[#{cleta.modelo}]]</th>
+                                    <th>[[#{cleta.precioTope}]]</th>
+                                    <th>[[#{cleta.salidaCleta}]]</th>
+                                    <th>[[#{cleta.imagen}]]</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="c : ${cletas}">
+                                    <td>[[${c.idCleta}]]</td>
+                                    <td>[[${c.modelo}]]</td>
+                                    <td>[[${c.precioTope}]]</td>
+                                    <td>[[${c.salidaCleta}]]</td>
+                                    <td><img th:src="@{${c.imagenCleta}}" alt="noData" height="75"/></td>
+                                    <td>
+                                        <a th:href="@{/cleta/eliminar/}+${c.idCleta}" class="btn btn-danger">
+                                            [[#{accion.eliminar}]]
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center p-2" th:if="${cletas == null or cletas.empty}">
+                        <span>[[#{lista.vacia}]]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fragmento 2: boton para crear, abre una ventana modal para agregar una cleta -->
+<section th:fragment="botonCrear">
+    <!-- Boton que dispara el modal -->
+    <div class="row py-4 mb-2 bg-light">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary"
+                    data-bs-toggle="modal" data-bs-target="#agregarCletaModal">
+                [[#{accion.agregar}]]
+            </button>
+        </div>
+    </div>
+    <!-- Ventana modal para agregar una cleta -->
+    <div class="modal fade" id="agregarCletaModal" tabindex="-1"
+         aria-labelledby="agregarCletaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h1 class="modal-title fs-5" id="agregarCletaLabel">[[#{cleta.agregar}]]</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/cleta/guardar}" th:object="${cleta}"
+                      class="was-validated" enctype="multipart/form-data" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label>[[#{cleta.modelo}]]</label>
+                            <input type="text" name="modelo" class="form-control" required="true"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>[[#{cleta.precioTope}]]</label>
+                            <input type="number" step="any" name="precioTope" class="form-control" required="true"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>[[#{cleta.salidaCleta}]]</label>
+                            <input type="number" name="salidaCleta" class="form-control" required="true"/>
+                        </div>
+                        <div class="mb-3">
+                            <label>[[#{cleta.imagen}]]</label>
+                            <input type="file" name="imagenFile" onchange="mostrarImagen(this);" class="form-control"/>
+                            <img id="blah" src="#" alt="imagen de cleta" height="200"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            [[#{accion.cerrar}]]
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            [[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
