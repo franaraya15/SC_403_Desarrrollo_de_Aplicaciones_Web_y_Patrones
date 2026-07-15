@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductoService {
+
     //se define el "enlace" con el repositorio
     private final ProductoRepository productoRepository;
     private final FirebaseStorageService firebaseStorageService;
@@ -20,18 +21,21 @@ public class ProductoService {
         this.productoRepository = productoRepository;
         this.firebaseStorageService = firebaseStorageService;
     }
-    @Transactional(readOnly=true)//para que sea solo de lectura desde la bd
-    public List<Producto> getProductos (boolean activo){
+
+    @Transactional(readOnly = true)//para que sea solo de lectura desde la bd
+    public List<Producto> getProductos(boolean activo) {
         if (activo) { //si quiere solo los activos...
             return productoRepository.findByActivoTrue();
         }
         return productoRepository.findAll();
-    } 
+    }
+
     //Recupera una producto
-    @Transactional(readOnly=true)
-    public Optional<Producto> getProducto (Integer idProducto){
+    @Transactional(readOnly = true)
+    public Optional<Producto> getProducto(Integer idProducto) {
         return productoRepository.findById(idProducto);
-    }    
+    }
+
     @Transactional
     public void save(Producto producto, MultipartFile imagenFile) {
         producto = productoRepository.save(producto);
@@ -40,9 +44,7 @@ public class ProductoService {
             try {
 
                 String rutaImagen = firebaseStorageService.uploadImage(
-
                         imagenFile, "producto",
-
                         producto.getIdProducto());
 
                 producto.setRutaImagen(rutaImagen);
@@ -50,13 +52,13 @@ public class ProductoService {
                 productoRepository.save(producto);
 
             } catch (IOException e) {
- 
+
             }
 
         }
 
     }
- 
+
     @Transactional
     public void delete(Integer idProducto) {
         // Verifica si la categoría existe antes de intentar eliminarlo
@@ -73,6 +75,23 @@ public class ProductoService {
         }
 
     }
+    //se llama a la consulta derivada del repositorio
+    @Transactional(readOnly = true)
+    public List<Producto> consultaDerivada(double precioInf, double precioSup) {
+        return productoRepository.findByPrecioBetweenOrderByPrecioAsc(precioInf, precioSup);
+    }
+    
+    //se llama a la consulta jpql del repositorio
+    @Transactional(readOnly = true)
+    public List<Producto> consultaJPQL(double precioInf, double precioSup) {
+        return productoRepository.consultaJPQL(precioInf, precioSup);
+    }
+    
+    //se llama a la consulta sql del repositorio
+    @Transactional(readOnly = true)
+    public List<Producto> consultaSQL(double precioInf, double precioSup) {
+        return productoRepository.consultaSQL(precioInf, precioSup);
+    }
 
- 
+    
 }
