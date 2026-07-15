@@ -57,5 +57,16 @@ public String consultaSQL(@RequestParam()double precioInf,
     return "/consultas/listado";
 }
 
+//PRACTICA #2: consulta ampliada por texto en descripcion/detalle y existencias minimas
+@PostMapping("/consultaPractica2")
+public String consultaPractica2(@RequestParam() String texto,
+        @RequestParam(defaultValue = "0") int existMin,
+        Model model){
+    var productos = productoService.consultaPractica2(texto, existMin);
+    model.addAttribute("productos", productos);
+    model.addAttribute("texto", texto);
+    model.addAttribute("existMin", existMin);
+    return "/consultas/listado";
+}
 
 }

@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  *
- * @author maria
+ * @author Faraya
  */
 @Data
 @Entity

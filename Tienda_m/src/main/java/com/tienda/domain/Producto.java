@@ -16,7 +16,7 @@ import static org.thymeleaf.templatemode.TemplateMode.TEXT;
 
 /**
  *
- * @author maria
+ * @author Faraya
  */
 @Data
 @Entity

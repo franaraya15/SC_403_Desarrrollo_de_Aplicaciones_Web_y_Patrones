@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author maria
+ * @author Faraya
  */
 @Repository
 public interface CategoriaRepository 

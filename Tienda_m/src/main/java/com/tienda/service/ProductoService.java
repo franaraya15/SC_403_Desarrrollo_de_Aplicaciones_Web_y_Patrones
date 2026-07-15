@@ -93,5 +93,11 @@ public class ProductoService {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
 
+    //PRACTICA #2: consulta ampliada por texto (descripcion/detalle) y existencias minimas
+    @Transactional(readOnly = true)
+    public List<Producto> consultaPractica2(String texto, int existMin) {
+        return productoRepository.consultaPractica2(texto, existMin);
+    }
+
     
 }
