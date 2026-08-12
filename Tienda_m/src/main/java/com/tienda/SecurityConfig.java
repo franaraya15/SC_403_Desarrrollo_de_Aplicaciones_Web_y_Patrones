@@ -1,7 +1,13 @@
 package com.tienda;
 
+import static ch.qos.logback.classic.spi.LoggingEventVO.build;
+import com.tienda.domain.Ruta;
+import com.tienda.service.RutaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +20,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 
 public class SecurityConfig {
-    //se establecen las rutas del sitio accesibles segun el rol del usuario
+    
+  /*  //se establecen las rutas del sitio accesibles segun el rol del usuario
     //la próxima semana se supera esto...
     //A continuacion van las rutas que TODOS pueden acceder en el sistema
 
@@ -30,20 +37,26 @@ public class SecurityConfig {
     //a continuacion las rutas que los administradores pueden acceder en el sistema
     public static final String[] ADMIN_URLS = {"/categoria/**",
         "/producto/**", "/consultas/**", "/usuario/**"};
-
+*/
     //A continuación se define el método que configura la autorización en el sistema
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+            @Lazy RutaService rutaService) throws Exception {
+        //se recuperan las rutas de la tabla rutas
+        var rutas = rutaService.getRutas();
+        
         //Se establece que perfil tiene acceso a que recurso...
-        http.authorizeHttpRequests(request -> request
-                .requestMatchers(PUBLIC_URLS).permitAll()
-                .requestMatchers(USUARIO_URLS).hasRole("USUARIO")
-                .requestMatchers(VENDEDOR_URLS).hasAnyRole("VENDEDOR","ADMIN")
-                .requestMatchers(ADMIN_URLS).hasRole("ADMIN")
-                .anyRequest().authenticated()
+        http.authorizeHttpRequests(request -> {
+            for (Ruta ruta : rutas) {
+                if (ruta.isRequiereRol()) {
+                    request.requestMatchers(ruta.getRuta()).hasRole(ruta.getRol().getRol());
+                } else {
+                    request.requestMatchers(ruta.getRuta()).permitAll();
+                }
+            }
+            request.anyRequest().authenticated();
                 
-        );
+        });
 
         //Se establece cómo se hace el LOGIN
         http.formLogin(form -> form
@@ -82,8 +95,16 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
-
     }
+    //esto es para identificar usuarios
+    @Autowired
+    public void configurerGlobal(AuthenticationManagerBuilder build,
+           @Lazy PasswordEncoder passwordEncoder,
+           @Lazy UserDetailsService userDetailsService) throws Exception {
+      build.userDetailsService(userDetailsService).passwordEncoder (passwordEncoder);  
+    }
+    
+    /* queda como conocimiento
 // se define los 3 usuarios "en memoria" la proxima semana esto se borra
 
     @Bean
@@ -109,5 +130,6 @@ public class SecurityConfig {
 //se crean los 3 usuarios en memoria
         return new InMemoryUserDetailsManager(user1, user2, user3);
     }
+*/
 
 }

@@ -30,16 +30,9 @@ public interface ProductoRepository
     @Query(nativeQuery=true,
             value="SELECT * FROM producto p WHERE p.precio BETWEEN :precioInf AND :precioSup ORDER BY p.precio ASC")
     public List<Producto> consultaSQL(double precioInf,double precioSup);
-
-    //PRACTICA #2: consulta ampliada JPQL - busca productos cuya descripcion o detalle
-    //contenga el texto indicado (LIKE, sin distinguir mayusculas) y con existencias mayores
-    //o iguales al minimo, ordenados por precio ascendente.
-    @Query(value="SELECT p FROM Producto p "
-            + "WHERE (LOWER(p.descripcion) LIKE LOWER(CONCAT('%', :texto, '%')) "
-            + "   OR  LOWER(p.detalle)     LIKE LOWER(CONCAT('%', :texto, '%'))) "
-            + "AND p.existencias >= :existMin "
-            + "ORDER BY p.precio ASC")
-    public List<Producto> consultaPractica2(String texto, int existMin);
-
+    
+    //consulta ampliada (derivada): recupera los productos activos cuya descripción contenga el texto ingresado (sin importar mayúsculas/minúsculas), ordenados alfabéticamente
+    public List<Producto> findByDescripcionContainingIgnoreCaseAndActivoTrueOrderByDescripcionAsc(String texto);
+    
 }
 

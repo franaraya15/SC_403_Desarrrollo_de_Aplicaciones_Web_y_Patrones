@@ -92,11 +92,11 @@ public class ProductoService {
     public List<Producto> consultaSQL(double precioInf, double precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
-
-    //PRACTICA #2: consulta ampliada por texto (descripcion/detalle) y existencias minimas
+    
+    //se llama a la consulta ampliada del repositorio (búsqueda por texto)
     @Transactional(readOnly = true)
-    public List<Producto> consultaPractica2(String texto, int existMin) {
-        return productoRepository.consultaPractica2(texto, existMin);
+    public List<Producto> consultaAmpliada(String texto) {
+        return productoRepository.findByDescripcionContainingIgnoreCaseAndActivoTrueOrderByDescripcionAsc(texto);
     }
 
     
