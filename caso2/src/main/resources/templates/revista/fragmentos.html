@@ -1,0 +1,103 @@
+<section th:fragment="listado" id="revistas">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>[[#{revista.titulo}]]</h4>
+                    </div>
+                    <div th:if="${revistas != null and !revistas.empty}">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>[[#{revista.idRevista}]]</th>
+                                    <th>[[#{revista.nombre}]]</th>
+                                    <th>[[#{revista.fecha}]]</th>
+                                    <th>[[#{revista.paginasRevista}]]</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="revista : ${revistas}">
+                                    <td>[[${revista.idRevista}]]</td>
+                                    <td>[[${revista.titulo}]]</td>
+                                    <td th:text="${#dates.format(revista.fecha,'dd/MM/yyyy')}"></td>
+                                    <td>[[${revista.paginasRevista}]]</td>
+                                    <td>
+                                        <a th:href="@{/revista/modificar/}+${revista.idRevista}"
+                                           class="btn btn-success">
+                                            <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center p-2" th:if="${revistas == null or revistas.empty}">
+                        <span th:text="#{revista.no_mostrar}">Lista vacía</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-center bg-success text-white mb-3">
+                    <div class="card-body">
+                        <h3>[[#{revista.totalRevistas}]]</h3>
+                        <h4 class="fs-2">
+                            <i class="fas fa-book-open"></i> [[${totalRevistas}]]
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="editar">
+    <form method="POST"
+          th:action="@{/revista/guardar}"
+          th:object="${revista}"
+          class="was-validated">
+        <input type="hidden" name="idRevista" th:field="*{idRevista}"/>
+
+        <div class="row py-4 mb-4 bg-light">
+            <div class="d-grid col-md-2 mx-auto">
+                <a th:href="@{/revista/listado}" class="btn btn-light btn-block">
+                    <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                </a>
+            </div>
+            <div class="d-grid col-md-2 mx-auto">
+                <button type="submit" class="btn btn-success btn-block">
+                    <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                </button>
+            </div>
+        </div>
+
+        <div id="detalle">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{accion.actualizar}]]</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>[[#{revista.nombre}]]</label>
+                                    <input type="text" class="form-control" name="titulo" th:field="*{titulo}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>[[#{revista.fecha}]]</label>
+                                    <input type="date" class="form-control" name="fecha" th:field="*{fecha}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>[[#{revista.paginasRevista}]]</label>
+                                    <input type="number" class="form-control" name="paginasRevista" th:field="*{paginasRevista}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

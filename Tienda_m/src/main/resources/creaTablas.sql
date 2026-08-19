@@ -1,20 +1,29 @@
--- Script de creación de tablas TechShop para Aiven (defaultdb).
--- Re-ejecutable: borra tablas si existen, luego las crea y carga datos.
--- NO crea base ni usuarios (Aiven plan free no lo permite).
--- Ejecutar conectado a la base 'defaultdb'.
+/*
+  Script de creación de base de datos para TechShop
+  Este script crea el esquema, tablas, usuarios, y
+  carga datos de ejemplo.
+*/
+-- Sección de administración (ejecutar una vez en un entorno de desarrollo)
+drop database if exists techshop;
+drop user if exists usuario_prueba;
+drop user if exists usuario_reportes;
 
--- --- Limpieza previa ---
-SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS usuario_rol;
-DROP TABLE IF EXISTS venta;
-DROP TABLE IF EXISTS factura;
-DROP TABLE IF EXISTS ruta;
-DROP TABLE IF EXISTS constante;
-DROP TABLE IF EXISTS producto;
-DROP TABLE IF EXISTS usuario;
-DROP TABLE IF EXISTS rol;
-DROP TABLE IF EXISTS categoria;
-SET FOREIGN_KEY_CHECKS = 1;
+-- Creación del esquema
+CREATE database techshop
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_unicode_ci;
+
+-- Creación de usuarios con contraseñas seguras (idealmente asignadas fuera del script)
+create user 'usuario_prueba'@'%' identified by 'Usuar1o_Clave.';
+create user 'usuario_reportes'@'%' identified by 'Usuar1o_Reportes.';
+
+-- Asignación de permisos
+-- Se otorgan permisos específicos en lugar de todos los permisos a todas las tablas futuras
+grant select, insert, update, delete on techshop.* to 'usuario_prueba'@'%';
+grant select on techshop.* to 'usuario_reportes'@'%';
+flush privileges;
+
+use techshop;
 
 -- --- Sección de Creación de Tablas ---
 
